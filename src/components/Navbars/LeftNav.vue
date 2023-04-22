@@ -1,6 +1,7 @@
 <template>
   <div class="left-nav">
     <router-link
+      @click="requestFood(item.link.name)"
       class="item"
       :to="item.link"
       v-for="item in leftBarItems"
@@ -13,18 +14,33 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+
 export default {
   data() {
     return {
       leftBarItems: [
         { id: 1, title: "Cofee", icon: "icon-cofee", link: { name: "coffee" } },
-        { id: 2, title: "Beverages", icon: "icon-cofee", link: "beverages" },
+        {
+          id: 2,
+          title: "Beverages",
+          icon: "icon-cofee",
+          link: { name: "beverages" },
+        },
         { id: 3, title: "Food", icon: "icon-cofee", link: { name: "food" } },
-        { id: 4, title: "Appetizer", icon: "icon-cofee", link: "appetizer" },
-        { id: 5, title: "Bread", icon: "icon-cofee", link: "bread" },
-        { id: 6, title: "Snack", icon: "icon-cofee", link: "snack" },
+        {
+          id: 4,
+          title: "Appetizer",
+          icon: "icon-cofee",
+          link: { name: "appetizer" },
+        },
+        { id: 5, title: "Bread", icon: "icon-cofee", link: { name: "bread" } },
+        { id: 6, title: "Snack", icon: "icon-cofee", link: { name: "snack" } },
       ],
     };
+  },
+  methods: {
+    ...mapActions(["requestFood"]),
   },
 };
 </script>

@@ -30,6 +30,38 @@ const routes: Array<RouteRecordRaw> = [
           foodType: 'coffee'
         }
       },
+      {
+        path: "bread",
+        name: "bread",
+        component: MenuPage,
+        props: {
+          foodType: 'bread'
+        }
+      },
+      {
+        path: "beverages",
+        name: "beverages",
+        component: MenuPage,
+        props: {
+          foodType: 'beverages'
+        }
+      },
+      {
+        path: "appetizer",
+        name: "appetizer",
+        component: MenuPage,
+        props: {
+          foodType: 'appetizer'
+        }
+      },
+      {
+        path: "snack",
+        name: "snack",
+        component: MenuPage,
+        props: {
+          foodType: 'snack'
+        }
+      },
     ],
   },
 ];

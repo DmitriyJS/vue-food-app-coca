@@ -13,20 +13,22 @@ export default createStore({
   },
   getters: {},
   mutations: {
-    setFoodList(state:stateType, payload: []) {
+    setFoodList(state: stateType, payload: []) {
       state.foodList = payload;
     },
   },
   actions: {
-    async requestFood({ commit }) {
-      // async requestFood(context) {
-        const response: any = await API.get("/food");
-        console.log(response);
-        
-        if (response.ok && response.data) {
-          commit("setFoodList", [...response.data]);
-        }
+    async requestFood({ commit }, payload) {
+      console.log(`response`);
 
+      const response: any = await API.get("/api/v1/menu", {
+        kind: payload,
+      });
+      console.log(response);
+
+      if (response.ok && response.data) {
+        commit("setFoodList", [...response.data]);
+      }
       // context.commit('')
     },
   },
