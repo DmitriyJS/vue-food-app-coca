@@ -20,6 +20,7 @@ export default {
   data() {
     return {
       leftBarItems: [
+        { id: 0, title: "All", icon: "icon-cofee", link: { name: "all" } },
         { id: 1, title: "Cofee", icon: "icon-cofee", link: { name: "coffee" } },
         {
           id: 2,

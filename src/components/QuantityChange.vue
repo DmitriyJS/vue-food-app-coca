@@ -1,44 +1,78 @@
 <template>
-    <div class="item-info__actions">
-        <div class="minus">-</div>
-        <div class="quantity">1</div>
-        <div class="plus">+</div>
-    </div>
+  <div :class="['item-info__actions', modelValue === 0 && 'empty']">
+    <div class="minus" v-if="modelValue > 0" @click="change(-1)">-</div>
+    <div class="quantity" v-if="modelValue > 0">{{ modelValue }}</div>
+    <div class="plus" @click="change(1)">+</div>
+  </div>
 </template>
 
-<style lang="scss"  scoped>
-.item-info__actions {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    width: 102px;
-    justify-content: space-between;
+<script>
+import { mapMutations } from "vuex";
+export default {
+  data() {
+    return {};
+  },
+  props: {
+    modelValue: {
+      type: Number,
+      default: 1,
+    },
+    shtopor: {
+      type: Number,
+      default: 100,
+    },
+  },
+  methods: {
+    change(num) {
+      let newVal = this.modelValue + num;
+      // if (!newVal || newVal > 100) {
+      //   return;
+      // }
+      if (newVal > 100) {
+        return;
+      }
+      this.$emit("update:modelValue", newVal);
+      this.$emit("update:papa", newVal * 2);
+    },
+  },
+};
+</script>
 
+<style lang="scss" scoped>
+.item-info__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 102px;
+  justify-content: space-between;
+
+  &.empty {
+    justify-content: flex-end;
+  }
 }
 
 .quantity {
-    font-size: 14px;
-    line-height: 140%;
-    color: #19191C;
-    font-weight: 600;
+  font-size: 14px;
+  line-height: 140%;
+  color: #19191c;
+  font-weight: 600;
 }
 
 .minus,
 .plus {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: #E4E4E4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    cursor: pointer;
-
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e4e4e4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  cursor: pointer;
 }
 
 .plus {
-    background: #19191C;
-    color: white;
+  background: #19191c;
+  color: white;
 }
 </style>

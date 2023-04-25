@@ -26,24 +26,45 @@
 
         <div class="input-cnt">
           <div class="input-title">User</div>
-          <input-item class="form-input" placeholder="Enter username" />
+          <input-item v-model="userName" class="form-input" placeholder="Enter username" />
         </div>
         <div class="input-cnt">
           <div class="input-title">Password</div>
-          <input-item class="form-input" placeholder="Enter password" />
+          <input-item v-model="userPassword" class="form-input" placeholder="Enter password" />
         </div>
         <div class="pass-renew">Forgot password?</div>
-        <button-item>Running order</button-item>
+        <button-item @click="onClick">Running order</button-item>
 
       </form>
 
-      <div class="bottom-text">End user agreement</div>
+      <div class="bottom-text"  >End user agreement</div>
 
     </div>
   </modal-item>
 </template>
 
-<script></script>
+<script>
+
+
+export default {
+  data() {
+    return {
+      userName: "",
+      userPassword: "",
+    }
+  },
+  methods: {
+    onClick() {
+      if (this.userName && this.userPassword ) {
+        this.$router.push({name:'all'});
+      } else {
+        alert("Введите данные")
+      }
+    }
+  }
+}
+
+</script>
 
 <style lang="scss" scoped>
 .bg-auth {

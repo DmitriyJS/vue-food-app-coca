@@ -12,5 +12,6 @@
     font-size: 12px;
     line-height: 150%;
     color: #FF5C00;
+    background: white;
 }
 </style>

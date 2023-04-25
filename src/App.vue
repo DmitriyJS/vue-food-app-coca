@@ -4,28 +4,19 @@
     <header-nav></header-nav>
     <main class="main">
       <left-nav></left-nav>
-      <!-- <div class="content">
-        <breadcrumbs-item></breadcrumbs-item>
-        <card-item v-for="item in foodList" :item="item" />
-        <div class="food-list"></div>
-      </div> -->
       <router-view></router-view>
       <right-bar></right-bar>
     </main>
-
   </div>
 </template>
 
 <script>
 import HeaderNav from "@/components/Navbars/HeaderNav/HeaderNav.vue";
-import BreadcrumbsItem from "@/components/Breadcrumbs/BreadcrumbsItem.vue";
 import SvgSprites from "@/components/Sprites/SvgSprites.vue";
 import LeftNav from "@/components/Navbars/LeftNav.vue";
-import { mapActions, mapState } from "vuex";
-
 import RightBar from "@/components/Navbars/RightBar/RightBar.vue";
-
-import CardItem from "@/components/CardItem.vue";
+import CardItem from "@/components/cards/CardItem.vue";
+import { mapActions, mapState } from "vuex";
 
 export default {
   components: {
@@ -34,7 +25,12 @@ export default {
     LeftNav,
     CardItem,
     RightBar,
-    BreadcrumbsItem,
+  },
+  methods: {
+    ...mapActions(["requestAllFood"]),
+  },
+  mounted() {
+    this.requestAllFood("all");
   },
 };
 </script>
@@ -60,18 +56,21 @@ body {
   height: 100%;
 }
 
-/* .content {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  overflow-y: scroll;
-  flex-wrap: wrap;
-  padding-top: 16px;
-  gap: 16px;
-  background: #f8f9fd;
+/* общий */
+.forms-title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 150%;
+  font-feature-settings: "ss02" on;
+  color: #19191c;
+}
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
-} */
+.forms-subtitle {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  font-feature-settings: "ss02" on;
+  color: #19191c;
+}
 </style>

@@ -23,6 +23,7 @@ export default {
     justify-content: center;
     align-items: center;
     padding: 12px;
+    height: 48px;
     background: #FF5C00;
     border-radius: 58px;
     flex-grow: 1;

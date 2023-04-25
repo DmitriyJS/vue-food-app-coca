@@ -1,3 +1,4 @@
+<!-- карточка товара в каталоге -->
 <template>
   <div class="card">
     <div class="card-img">
@@ -32,6 +33,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .card-img {

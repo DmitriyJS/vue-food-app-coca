@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import AuthPage from "@/components/pages/AuthPage.vue";
 import Empty from "@/components/Empty.vue";
 import MenuPage from "@/components/pages/MenuPage.vue";
+import Page404 from "@/components/pages/Page404.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -14,6 +15,14 @@ const routes: Array<RouteRecordRaw> = [
     name: "menu",
     component: Empty,
     children: [
+      {
+        path: "",
+        name: "all",
+        component: MenuPage,
+        props: {
+          foodType: 'all'
+        }
+      },
       {
         path: "food",
         name: "food",
@@ -63,6 +72,15 @@ const routes: Array<RouteRecordRaw> = [
         }
       },
     ],
+  },
+  {
+    path: "/",
+    redirect: "/auth",
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: "404",
+    component: Page404,
   },
 ];
 
