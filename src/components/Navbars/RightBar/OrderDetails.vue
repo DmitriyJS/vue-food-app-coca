@@ -1,5 +1,5 @@
 <template>
-  <div class="order-details-cnt">
+  <div class="order-details-cnt" v-if="userOrder. length" >
     <h3 class="title">Order details</h3>
     <order-card :foodItem="item" v-for="item in userOrder" ></order-card>
   </div>

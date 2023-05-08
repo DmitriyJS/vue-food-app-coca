@@ -26,12 +26,12 @@
     <div class="form-footer">
       <div class="total">
         <div class="title">Total</div>
-        <div class="amount">$ 26.55</div>
+        <div class="amount">₽ {{ totalOrderPrice }}</div>
       </div>
       <button-item
         @click="
           () => {
-            // setOrder({ id: item.id, num: 1, note });
+            // setOrder({ id: item.id, num: 1, note }); 
             $emit('close');
           }
         "
@@ -64,6 +64,21 @@ export default {
   },
   computed: {
     ...mapState(["foodListAll", "userOrder"]),
+    totalOrderPrice(){
+      // id шники в aditionalCard, вытянуть их из моего заказа и подсчитать
+      let ids = this.additionalList.map(el => el = el.id);
+    
+      let sumOfAdditional = 0;
+      ids.forEach(el => {
+        if (this.userOrder.find(elem => elem.id == el)) {
+          sumOfAdditional += this.userOrder.find(elem => elem.id == el).price * this.userOrder.find(elem => elem.id == el).num;
+        }
+      })
+      
+      let mainDishPrice = this.userOrder.find(el => el.id == this.item.id).num * this.item.price
+      
+      return sumOfAdditional + mainDishPrice;
+    },
     orderNote: {
       get(){
         return this.$store.state.orderNote;

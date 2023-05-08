@@ -2,14 +2,17 @@
   <div class="right-bar">
     <customer-info-form></customer-info-form>
     <order-details></order-details>
+    <total-price></total-price>
   </div>
 </template>
 
 <script>
 import CustomerInfoForm from "@/components/Navbars/RightBar/CustomerInfoForm.vue";
 import OrderDetails from "@/components/Navbars/RightBar/OrderDetails.vue";
+import TotalPrice from "@/components/Navbars/RightBar/TotalPrice.vue"
+
 export default {
-  components: { CustomerInfoForm, OrderDetails },
+  components: { CustomerInfoForm, OrderDetails, TotalPrice, },
 };
 </script>
 
