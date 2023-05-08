@@ -25,14 +25,11 @@ export default {
   methods: {
     change(num) {
       let newVal = this.modelValue + num;
-      // if (!newVal || newVal > 100) {
-      //   return;
-      // }
       if (newVal > 100) {
         return;
       }
       this.$emit("update:modelValue", newVal);
-      this.$emit("update:papa", newVal * 2);
+      this.$emit("update:shtopor", newVal * 2);
     },
   },
 };

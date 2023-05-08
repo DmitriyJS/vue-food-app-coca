@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 import CardItem from "@/components/cards/CardItem.vue";
 import BreadcrumbsItem from "@/components/BreadcrumbsItem.vue";
 import AdditionalCard from "../cards/AdditionalCard.vue";
@@ -29,7 +29,7 @@ export default {
   name: "menu-page",
   data() {
     return {
-      currentFoodItem: {name: 123},
+      currentFoodItem: {},
       cardIsOpened: false,
     };
   },
@@ -48,11 +48,16 @@ export default {
   },
   computed: {
     ...mapState(["foodList"]),
+    ...mapGetters(["getQuantityById"])
   },
   methods: {
     ...mapActions(["requestFood"]),
+    ...mapMutations(["setOrder"]),
     cardClick(item) {
       this.currentFoodItem = {...item};
+      if (!this.getQuantityById(item.id)) {
+        this.setOrder({num: 1, id: item.id })
+      }
       this.cardIsOpened = true;
     },
     closeModal() {

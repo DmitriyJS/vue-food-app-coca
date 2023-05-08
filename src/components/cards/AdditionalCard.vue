@@ -4,36 +4,21 @@
     <div class="img-cnt"><img :src="item.photo" alt="" /></div>
     <div class="item-info">
       <div class="item-info__title">{{ item.name }}</div>
-      <div class="price-amount">11.87$</div>
+      <div class="price-amount">{{ item.price }}₽</div>
     </div>
-    <!-- <quantity-change
-      @update:modelValue="
-        ($event) => {
-          quantity = $event;
-          addToOrder({ id: item.id, num: $event });
-        }
-      "
-      :modelValue="quantity"
-    ></quantity-change> -->
     <quantity-change
-      v-model="quantity"
+      :modelValue="getQuantityById(this.item.id)"
       v-model:shtopor="busta"
-      @update:modelValue="setOrder"
+      @update:modelValue="setOrder({ id: this.item.id, num: $event })"
     ></quantity-change>
   </div>
 </template>
 
 <script>
 import QuantityChange from "@/components/QuantityChange.vue";
-import { mapMutations } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 export default {
   components: { QuantityChange },
-  data() {
-    return {
-      quantity: 0,
-      shtopor: 700,
-    };
-  },
   props: {
     item: {
       type: Object,
@@ -41,14 +26,22 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      shtopor: 700,
+    };
+  },
+  computed: {
+    ...mapGetters(["getQuantityById"])
+  },
   methods: {
-    ...mapMutations(["addToOrder"]),
-    setOrder($event){
-      if (!$event) {
-        alert()
-      }
-      this.addToOrder({ id: this.item.id, num: $event })
-    }
+    ...mapMutations(["setOrder"]),
+    // setOrder($event){
+    //   if (!$event) {
+    //     alert($event)
+    //   }
+    //   this.setOrder({ id: this.item.id, num: $event })
+    // }
   },
 };
 </script>

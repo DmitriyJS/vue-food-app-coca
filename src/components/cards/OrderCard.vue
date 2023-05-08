@@ -7,9 +7,12 @@
       <div class="pricement">
         <div class="item-info__pricement">
           <div class="price-title">Price</div>
-          <div class="price-amount">11.87$</div>
+          <div class="price-amount">{{ foodItem.price }}₽</div>
         </div>
-        <quantity-change  @update:modelValue="addToOrder({id:foodItem.id, num: $event })" :modelValue = "foodItem.quantity"  ></quantity-change> 
+        <quantity-change
+          :modelValue="getQuantityById(this.foodItem.id)"
+          @update:modelValue="setOrder({ id: this.foodItem.id, num: $event })"
+        ></quantity-change>
       </div>
     </div>
   </div>
@@ -17,12 +20,15 @@
 
 <script>
 import QuantityChange from "@/components/QuantityChange.vue";
-import { mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from "vuex";
 export default {
   components: { QuantityChange },
   props: ["foodItem"],
   methods: {
-    ...mapMutations(['addToOrder']),
+    ...mapMutations(["setOrder"]),
+  },
+  computed: {
+    ...mapGetters(["getQuantityById"]),
   }
 };
 </script>

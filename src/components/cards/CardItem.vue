@@ -6,7 +6,7 @@
     </div>
     <div class="card-info">
       <div class="card-title">{{ item.name }}</div>
-      <div class="card-price">{{ item.price }}$</div>
+      <div class="card-price">{{ item.price }}₽</div>
     </div>
   </div>
 </template>

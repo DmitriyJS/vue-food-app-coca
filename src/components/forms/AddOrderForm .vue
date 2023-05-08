@@ -14,7 +14,8 @@
     <div class="note">
       <div class="note__title">Add note</div>
       <textarea
-        v-model="note"
+        v-model="orderNote"
+      
         placeholder="Type your note here"
         name=""
         id=""
@@ -30,7 +31,7 @@
       <button-item
         @click="
           () => {
-            addToOrder({...item, note, quantity: 1 });
+            // setOrder({ id: item.id, num: 1, note });
             $emit('close');
           }
         "
@@ -43,7 +44,8 @@
 <script>
 import OrderCard from "@/components/cards/OrderCard.vue";
 import AdditionalCard from "@/components/cards/AdditionalCard.vue";
-import { mapActions, mapState } from "vuex";
+import { mapMutations, mapState } from "vuex";
+import store from '@/store';
 export default {
   data() {
     return {
@@ -58,22 +60,30 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["addToOrder"]),
+    ...mapMutations(["setOrder", "setValue"]),
   },
   computed: {
-    ...mapState(["foodListAll"]),
+    ...mapState(["foodListAll", "userOrder"]),
+    orderNote: {
+      get(){
+        return this.$store.state.orderNote;
+      },
+      set(e){
+        this.setValue({field: 'orderNote', value: e }); 
+      }
+    },
     additionalList() {
       // получить массив из 3 рандомных элементов
       let arr = [];
       for (let i = 0; i < 3; i++) {
-        let randNum = Math.round(Math.random() * this.foodListAll.length);
         let filteredArr = this.foodListAll.filter(
-          (el) => el.id !== this.item.id
-        );
+          (el) => el.id !== this.item.id );
+        let randNum = Math.round(Math.random() * (filteredArr.length - 1));
         arr.push(filteredArr[randNum]);
         console.log(randNum);
       }
       console.log(arr);
+      console.log( this.foodListAll.length);
       return arr;
     },
   },
