@@ -20,23 +20,23 @@ export default {
   data() {
     return {
       leftBarItems: [
-        { id: 0, title: "All", icon: "icon-cofee", link: { name: "all" } },
-        { id: 1, title: "Cofee", icon: "icon-cofee", link: { name: "coffee" } },
+        { id: 0, title: "All", icon: "i-all-32", link: { name: "all" } },
+        { id: 1, title: "Cofee", icon: "i-coffee-32", link: { name: "coffee" } },
         {
           id: 2,
           title: "Beverages",
-          icon: "icon-cofee",
+          icon: "i-beverages-32",
           link: { name: "beverages" },
         },
-        { id: 3, title: "Food", icon: "icon-cofee", link: { name: "food" } },
+        { id: 3, title: "Food", icon: "i-food-32", link: { name: "food" } },
         {
           id: 4,
           title: "Appetizer",
-          icon: "icon-cofee",
+          icon: "i-appetizer-32",
           link: { name: "appetizer" },
         },
-        { id: 5, title: "Bread", icon: "icon-cofee", link: { name: "bread" } },
-        { id: 6, title: "Snack", icon: "icon-cofee", link: { name: "snack" } },
+        { id: 5, title: "Bread", icon: "i-bread-32", link: { name: "bread" } },
+        { id: 6, title: "Snack", icon: "i-snack-32", link: { name: "snack" } },
       ],
     };
   },
@@ -70,16 +70,18 @@ export default {
     font-weight: 500;
     font-size: 12px;
     line-height: 116%;
+    transition: 0.2s;
 
     &:hover {
-      background: linear-gradient(218.57deg, #ffab18 -6.67%, #ff2197 137.69%);
-      color: white;
+      background: rgba(255, 171, 24, 0.1) ;
     }
 
-    &.active {
+    &.router-link-exact-active {
       background: linear-gradient(218.57deg, #ffab18 -6.67%, #ff2197 137.69%);
       color: white;
     }
   }
 }
+
+
 </style>

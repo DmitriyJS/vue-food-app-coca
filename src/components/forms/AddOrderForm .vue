@@ -90,10 +90,13 @@ export default {
     additionalList() {
       // получить массив из 3 рандомных элементов
       let arr = [];
+      let prevRundNum = null;
       for (let i = 0; i < 3; i++) {
         let filteredArr = this.foodListAll.filter(
           (el) => el.id !== this.item.id );
         let randNum = Math.round(Math.random() * (filteredArr.length - 1));
+        if (randNum == prevRundNum) randNum = Math.round(Math.random() * (filteredArr.length - 1));
+        prevRundNum = randNum;
         arr.push(filteredArr[randNum]);
         console.log(randNum);
       }

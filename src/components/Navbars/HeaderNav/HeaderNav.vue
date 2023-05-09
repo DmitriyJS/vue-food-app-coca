@@ -30,9 +30,9 @@ export default {
         return {
             menuItemList: [
                 { id: 1, title: "Home", icon: "i-home-24" },
-                { id: 2, title: "Order", icon: "i-home-24" },
-                { id: 3, title: "History", icon: "i-home-24" },
-                { id: 4, title: "Bills", icon: "i-home-24" },
+                { id: 2, title: "Order", icon: "i-order-24" },
+                { id: 3, title: "History", icon: "i-order-24" },
+                { id: 4, title: "Bills", icon: "i-bills-24" },
             ],
             diningOptionSubitems: [
                 { id: 5, title: "Dine in", icon: "" },

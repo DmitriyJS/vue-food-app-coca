@@ -1,5 +1,6 @@
 <template>
   <div class="right-bar">
+    <div class="tomove"></div>
     <customer-info-form></customer-info-form>
     <order-details></order-details>
     <total-price></total-price>
