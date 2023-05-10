@@ -33,7 +33,7 @@
 
     <div class="food-list">
       <card-item
-        v-for="foodItem in listToShow"
+        v-for="foodItem in foodListToShow"
         :item="foodItem"
         @click="cardClick(foodItem)"
       />
@@ -53,7 +53,6 @@
 import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 import CardItem from "@/components/cards/CardItem.vue";
 import BreadcrumbsItem from "@/components/BreadcrumbsItem.vue";
-import AdditionalCard from "../cards/AdditionalCard.vue";
 import AddOrderForm from "../forms/AddOrderForm .vue";
 export default {
   name: "menu-page",
@@ -69,7 +68,7 @@ export default {
   components: {
     CardItem,
     BreadcrumbsItem,
-    AdditionalCard,
+    // AdditionalCard,
     AddOrderForm,
   },
   props: {
@@ -82,10 +81,13 @@ export default {
   computed: {
     ...mapState(["foodList"]),
     ...mapGetters(["getQuantityById"]),
-    // foodListToShow() {
-    //   if (this.currentFilter == "Все") return this.foodList;
-    //   return this.foodList.filter((el) => el.category == this.currentFilter);
-    // },
+    foodListToShow() {
+      if (this.searchQuery) {
+        return this.foodList.filter((el) => el.name.toLowerCase().includes(this.searchQuery.toLowerCase()));
+      }
+      if (this.currentFilter == "Все") return this.foodList;
+      return this.foodList.filter((el) => el.category == this.currentFilter);
+    },
     getCategories() {
       return ["Все"].concat(
         Array.from(new Set(this.foodList.map((el) => el.category)))
@@ -97,17 +99,6 @@ export default {
       this.currentFilter = 'Все',
       this.listToShow = this.foodList
     },
-    searchQuery(){
-      this.listToShow = this.foodList.filter((el) => el.name.toLowerCase().includes(this.searchQuery.toLowerCase()));
-    },
-    currentFilter(){
-      if (this.currentFilter == "Все") {
-        this.listToShow = this.foodList
-        return
-      };
-      this.listToShow = this.foodList.filter((el) => el.category == this.currentFilter);
-    }
-
   },
   methods: {
     ...mapActions(["requestFood"]),
@@ -125,9 +116,6 @@ export default {
     filterItems(filter) {
       this.currentFilter = filter;
     },
-  },
-  created() {
-    this.requestFood(this.foodType);
   },
 };
 </script>

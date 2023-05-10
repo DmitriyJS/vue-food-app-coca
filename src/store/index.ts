@@ -41,10 +41,10 @@ export default createStore({
     setFoodList(state: stateType, payload: []) {
       state.foodList = payload;
     },
-    setFoodListAll(state: stateType, payload: []) {
-      state.foodListAll = payload;
-    },
-    setValue(state:any, payload:any) {
+    // setFoodListAll(state: stateType, payload: []) {
+    //   state.foodListAll = payload;
+    // },
+    setValue<Field extends keyof stateType, Value extends stateType[Field]>(state:stateType, payload:{field: Field, value: Value }) {
       console.log(payload.value);
       
         state[payload.field] = payload.value
@@ -65,7 +65,7 @@ export default createStore({
         state.userOrder[index].num = payload.num;
       } else {
         // просто новый
-        let foodItem = state.foodListAll.find((el: any) => el.id == payload.id);
+        let foodItem = state.foodList.find((el: any) => el.id == payload.id);
         if (foodItem) {
           let newObj = cloneDeep(foodItem);
           newObj.num = 1;
@@ -86,16 +86,16 @@ export default createStore({
         commit("setFoodList", [...response.data]);
       }
     },
-    async requestAllFood({ commit }, payload) {
-      console.log(`response hahaha`, payload);
-      const response: any = await API.get("/api/v1/menu", {
-        kind: payload,
-      });
-      console.log(response);
-      if (response.ok && response.data) {
-        commit("setFoodListAll", [...response.data]);
-      }
-    },
+    // async requestAllFood({ commit }, payload) {
+    //   console.log(`response hahaha`, payload);
+    //   const response: any = await API.get("/api/v1/menu", {
+    //     kind: payload,
+    //   });
+    //   console.log(response);
+    //   if (response.ok && response.data) {
+    //     commit("setFoodListAll", [...response.data]);
+    //   }
+    // },
   },
   modules: {},
 });

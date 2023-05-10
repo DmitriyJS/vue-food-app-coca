@@ -63,7 +63,7 @@ export default {
     ...mapMutations(["setOrder", "setValue"]),
   },
   computed: {
-    ...mapState(["foodListAll", "userOrder"]),
+    ...mapState(["foodList", "userOrder"]),
     totalOrderPrice(){
       // id шники в aditionalCard, вытянуть их из моего заказа и подсчитать
       let ids = this.additionalList.map(el => el = el.id);
@@ -92,7 +92,7 @@ export default {
       let arr = [];
       let prevRundNum = null;
       for (let i = 0; i < 3; i++) {
-        let filteredArr = this.foodListAll.filter(
+        let filteredArr = this.foodList.filter(
           (el) => el.id !== this.item.id );
         let randNum = Math.round(Math.random() * (filteredArr.length - 1));
         if (randNum == prevRundNum) randNum = Math.round(Math.random() * (filteredArr.length - 1));
@@ -100,8 +100,6 @@ export default {
         arr.push(filteredArr[randNum]);
         console.log(randNum);
       }
-      console.log(arr);
-      console.log( this.foodListAll.length);
       return arr;
     },
   },

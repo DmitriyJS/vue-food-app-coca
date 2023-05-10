@@ -27,10 +27,10 @@ export default {
     RightBar,
   },
   methods: {
-    ...mapActions(["requestAllFood"]),
+    ...mapActions(["requestFood"]),
   },
-  mounted() {
-    this.requestAllFood("all");
+  created() {
+    this.requestFood("all");
   },
 };
 </script>

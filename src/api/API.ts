@@ -11,13 +11,13 @@ export default {
           res({ ok: true, data: data.slice(1, 3) });
         }
         if (params.kind == "coffee") {
-          res({ ok: true, data: data.slice(7, 10) });
+          res({ ok: true, data: data.slice(7, 12) });
         }
         if (params.kind == "beverages") {
           res({ ok: true, data: data.slice(4, 17) });
         }
         if (params.kind == "appetizer") {
-          res({ ok: true, data: data.slice(17, 18) });
+          res({ ok: true, data: data.slice(7, 18) });
         }
         if (params.kind == "coffee") {
           res({ ok: true, data: data.slice(1, 14) });
